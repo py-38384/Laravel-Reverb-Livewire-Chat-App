@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -7,11 +8,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-
-
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::controller(UserController::class)->group(function (){
+    Route::get('dashboard', 'index')->name('dashboard')->middleware(['auth', 'verified']);
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
