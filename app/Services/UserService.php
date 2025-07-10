@@ -21,4 +21,7 @@ class UserService implements UserServiceInterface
     public function getAllOtherUser(){
         return $this->userRepository->get_all_user_without_the_current();
     }
+    public function getSingleUser(string $user_id){
+        return $this->userRepository->find($user_id);
+    }
 }

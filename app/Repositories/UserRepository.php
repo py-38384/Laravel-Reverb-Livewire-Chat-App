@@ -23,4 +23,7 @@ class UserRepository implements UserRepositoryInterface
     public function get_all_user_without_the_current(){
         return User::where('id','!=',auth()->id())->get();
     }
+    public function find(string $userId){
+        return User::find($userId);
+    }
 }

@@ -22,4 +22,7 @@ class UserController extends Controller
         $users = $this->userService->getAllOtherUser();
         return view('dashboard',['users'=> $users]);
     }
+    public function userChat(string $userId):View{
+        return view('user-chat',['userId' => $userId]);
+    }
 }
