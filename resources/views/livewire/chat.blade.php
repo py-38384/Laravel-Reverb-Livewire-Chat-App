@@ -46,15 +46,15 @@
         border-bottom-left-radius: 10px;0;
     }
 
-    .chat-container .chat-right .message:first-child{
+    .chat-container .chat-right .message-box:first-child .message{
         border-top-right-radius: 10px;
     }
-    .chat-container .chat-right .message{
+    .chat-container .chat-right .message-box .message{
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
     }
-    .chat-container .chat-right .message:last-child{
-        border-bottom-right-radius: 10px;0;
+    .chat-container .chat-right .message-box:last-child .message{
+        border-bottom-right-radius: 10px;
     }
 
 
@@ -100,7 +100,7 @@
                 </div>
                 <div class="message-box">
                     <span class="message message-right">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio aliquam natus consequatur tenetur ab et est repellat, nesciunt sint libero, amet nam facere. Quis, atque odio. Dolorem vitae fugit harum.
                     </span>
                     <span class="recipient-dp" style="display:none;"><img src="{{ asset('assets/images/onika.jpg') }}" alt=""></span>
                 </div>
