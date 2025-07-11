@@ -3,6 +3,8 @@
     <head>
         @include('partials.head')
     </head>
+    @yield('css')
+    @yield('prepend-script')
     <body class="min-h-screen bg-white dark:bg-zinc-800">
         <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
@@ -129,4 +131,75 @@
 
         @fluxScripts
     </body>
+    <script>
+    (function defindAppearance(){
+        const dependent_elements = document.querySelectorAll("[data-appearance]")
+        const hover_dependent_elements = document.querySelectorAll("[data-hover-appearance]")
+        const focus_dependent_elements = document.querySelectorAll("[data-focus-appearance]")
+
+        const appearance = localStorage.getItem('flux.appearance')
+
+        if(appearance && appearance === 'light'){
+            dependent_elements.forEach((element) => {
+                const appearance_class = element.dataset.lightModeClass
+                element.classList.add(appearance_class)
+            })
+            hover_dependent_elements.forEach((element) => {
+                const hover_appearance_class = element.dataset.lightModeHoverClass
+                element.addEventListener('mouseenter', () => {
+                    element.classList.add(hover_appearance_class); // Apply hover effect
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    element.classList.remove(hover_appearance_class); // Remove hover effect
+                });
+            })
+            focus_dependent_elements.forEach((element) => {
+                const focus_appearance_class = element.dataset.lightModeFocusClass
+                element.addEventListener('focus', () => {
+                    if(focus_appearance_class){
+                        element.classList.add(focus_appearance_class);
+                    }
+                });
+                
+                element.addEventListener('blur', () => {
+                    if(focus_appearance_class){
+                        element.classList.remove(focus_appearance_class);
+                    }
+                });
+            })
+        } else {
+            dependent_elements.forEach((element) => {
+                const appearance_class = element.dataset.darkModeClass
+                element.classList.add(appearance_class)
+            })
+            hover_dependent_elements.forEach((element) => {
+                const hover_appearance_class = element.dataset.darkModeHoverClass
+                element.addEventListener('mouseenter', () => {
+                    element.classList.add(hover_appearance_class); // Apply hover effect
+                });
+
+                element.addEventListener('mouseleave', () => {
+                    element.classList.remove(hover_appearance_class); // Remove hover effect
+                });
+            })
+            focus_dependent_elements.forEach((element) => {
+                const focus_appearance_class = element.dataset.darkModeFocusClass
+                element.addEventListener('focus', (e) => {
+                    if(focus_appearance_class){
+                        element.classList.add(focus_appearance_class);
+                    }
+                });
+
+                element.addEventListener('blur', (e) => {
+                    if(focus_appearance_class){
+                        element.classList.remove(focus_appearance_class);
+                    }
+                });
+            })
+        }
+
+    
+    })()
+    </script>
 </html>
